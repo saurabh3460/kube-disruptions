@@ -3,6 +3,12 @@ Welcome to kube-disruptions, a repository dedicated to exploring disruptions in 
 
 Kubernetes is a powerful container orchestration system that can automate deployment, scaling, and management of containerized applications. However, even with the best configuration and setup, things can still go wrong. Nodes can fail, pods can crash, networks can become unreliable, and many other issues can arise. Kubernetes provides various mechanisms for dealing with disruptions, but they require planning, testing, and continuous improvement.
 
+#### Two types of events that can cause downtime or other disruptions in a Kubernetes cluster:
+
+**Voluntary disruptions:** These are disruptions that are initiated intentionally by an operator or administrator, often for the purpose of performing maintenance, upgrades, or other tasks. For example, a voluntary disruption may involve draining a node or a pod to perform maintenance or updating the software version of a deployment. Kubernetes provides mechanisms for performing voluntary disruptions in a controlled and orchestrated manner, such as using rolling updates or node draining to ensure that the workload is redistributed and the impact on users is minimized.
+
+**Involuntary disruptions:** These are disruptions that occur unexpectedly or unintentionally, often due to hardware or software failures, network issues, or other unforeseen circumstances. For example, an involuntary disruption may involve a node crashing, a pod being evicted due to resource constraints, or a network partition causing communication failures between components. Kubernetes also provides mechanisms for handling involuntary disruptions, such as pod rescheduling, automatic node recovery, and automatic failover for stateful workloads.
+
 This repository contains a collection of topics and exercises related to Kubernetes Disruptions, with the goal of helping you develop skills and confidence in handling them. The topics cover various aspects of disruptions, such as:
 
 - Understanding failure modes and resilience
