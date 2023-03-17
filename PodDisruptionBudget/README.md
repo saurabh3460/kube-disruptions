@@ -14,11 +14,8 @@ To test pod disruption budgets, we will deliberately drain a node and observe th
 kubectl apply -f manifest.yaml
 ```
 
-##### Patch our main emoji service
+##### Patch our main emoji service with podAntiAffinity so that all pods will spread on all nodes
 
 ```sh
-kubectl patch deployment emoji -n emojivoto --type=json -p='[{"op": "add", "path": "/spec/template/spec/affinity", "value": {"podAntiAffinity": {"requiredDuringSchedulingIgnoredDuringExecution": [{"labelSelector": {"matchExpressions": [{"key": "app", "operator": "In", "values": ["emoji-svc"]}]}, "topologyKey": "k3s.io/hostname"}]}}}]'
+kubectl patch deployment emoji -n emojivoto --type=json -p='[{"op": "add", "path": "/spec/template/spec/affinity", "value": {"podAntiAffinity": {"requiredDuringSchedulingIgnoredDuringExecution": [{"labelSelector": {"matchExpressions": [{"key": "app", "operator": "In", "values": ["emoji-svc"]}]}, "topologyKey": "kubernetes.io/hostname"}]}}}]'
 ```
-
-**Note** This topologyKey ``"topologyKey": "k3s.io/hostname"`` may be different like if you are not using k3d then you may see this  ``"topologyKey": "kubernetes.io/hostname"`` . 
-so before patching check the node label using ``kubectl describe node k3d-disruption01-server-0``
